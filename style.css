@@ -384,23 +384,7 @@ h3 {
   font-weight: 900;
 }
 
-.purdue-logo {
-  font-size: 2.3rem;
-  font-family: Georgia, serif;
-  color: #c8b18b;
-  -webkit-text-stroke: 2px #111;
-  transform: skewX(-10deg);
-}
 
-.jbnu-logo {
-  width: 58px;
-  height: 58px;
-  border-radius: 50%;
-  background: #234f8f;
-  color: white;
-  font-size: 0.9rem;
-  border: 3px solid #d7e1f2;
-}
 
 .trajectory-row h3 {
   font-size: 1.35rem;
@@ -447,9 +431,11 @@ h3 {
   }
 
   .school-logo {
-    width: 56px;
-    height: 42px;
-  }
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  display: block;
+}
 
   .purdue-logo {
     font-size: 1.8rem;
@@ -660,9 +646,11 @@ footer {
 /* Responsive */
 
 @media (max-width: 860px) {
-  .nav-links {
-    display: none;
+  .school-logo {
+    width: 52px;
+    height: 52px;
   }
+}
 
   .hero-grid,
   .section-head,

@@ -1,272 +1,63 @@
-import React from 'react'
-import { createRoot } from 'react-dom/client'
-import {
-  Mail,
-  Linkedin,
-  Github,
-  FileText,
-  GraduationCap,
-  ExternalLink,
-  MapPin
-} from 'lucide-react'
-import './style.css'
-
-const interests = [
-  'Knowledge Graphs',
-  'Large Language Models',
-  'Human-Centered NLP',
-  'Retrieval-Augmented Generation',
-  'Knowledge-Grounded Reasoning',
-  'Human-AI Interaction'
-]
-
-const news = [
-  ['2026', 'PAPER', 'Paper accepted at FLAIRS 2026 on probing knowledge graph reliability and semantic coherence with language models.'],
-  ['2026', 'RESEARCH', 'Started graduate research assistantship on AI-enabled library services at Purdue University Libraries.'],
-  ['2025', 'PROJECT', 'Developed an LLM and RAG-based system for thermostat response analysis in residential settings.'],
-  ['2024', 'PAPER', 'Published work on performance metrics and augmentation methods in lung nodule classification in Applied Sciences.']
-]
-
-const publications = [
-  {
-    title: 'Probing Knowledge Graph Reliability and Semantic Coherence with Language Models',
-    authors: 'Yoonhyuck Woo, Julia T. Rayz',
-    venue: 'FLAIRS 2026 — 39th International Florida AI Research Society Conference',
-    note: 'Accepted',
-    links: ['PDF', 'Code']
-  },
-  {
-    title: 'Research on Performance Metrics and Augmentation Methods in Lung Nodule Classification',
-    authors: 'D. Luo, I. Yang, J. Bae, Y. Woo',
-    venue: 'Applied Sciences, vol. 14, no. 13, p. 5726',
-    note: 'Published · 2024',
-    links: ['PDF']
-  },
-  {
-    title: 'Improve Pulmonary Nodule Classification Performance Utilizing Proper Metrics and Augmentation Methods',
-    authors: 'D. Luo, J. Bae, Y. Woo, J. Baek',
-    venue: 'Korean Institute of Industrial Engineers Autumn Conference, Incheon, Korea',
-    note: 'Presented · 2022',
-    links: []
-  }
-]
-
-const trajectory = [
-  ['Purdue University', 'Ph.D. Student, Computer and Information Technology', '2025 – Present'],
-  ['Purdue University', 'M.S., Computer and Information Technology', '2023 – 2025'],
-  ['Jeonbuk National University', 'B.S., Industrial Engineering', '2017 – 2023']
-]
-
-const projects = [
-  {
-    title: 'Conference Knowledge Synthesis Assistant',
-    period: 'Feb. 2026 – Apr. 2026',
-    desc: 'A knowledge graph system for synthesizing insights across research papers and user notes using LLM-based candidate generation and code-driven validation.',
-    tags: ['Knowledge Graphs', 'LLMs', 'Django', 'D3.js']
-  },
-  {
-    title: 'LLM System for Thermostat Response Analysis',
-    period: 'Feb. 2025 – Aug. 2025',
-    desc: 'A two-module LLM system for detecting reasoning in resident responses, generating follow-up prompts, and answering questions with RAG.',
-    tags: ['LLMs', 'RAG', 'Clustering']
-  },
-  {
-    title: 'Dynamic Context-Aware Chatbot using ConceptFlow',
-    period: 'Mar. 2024 – Apr. 2024',
-    desc: 'A context-aware chatbot integrating ConceptFlow, graph attention, and concept-based strategies for improved interaction management.',
-    tags: ['ConceptFlow', 'Graph Attention', 'Python']
-  }
-]
-
-const skills = [
-  'Python', 'PyTorch', 'TensorFlow', 'HuggingFace Transformers',
-  'scikit-learn', 'RAG', 'LangChain', 'pandas', 'NumPy', 'C', 'R'
-]
-
-function App() {
-  return (
-    <main>
-      <nav className="nav">
-        <a className="logo" href="#home">YH.</a>
-        <div className="nav-links">
-          <a href="#about">About</a>
-          <a href="#research">Research</a>
-          <a href="#publications">Publications</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
-        </div>
-      </nav>
-
-      <section id="home" className="hero academic-hero">
-        <div className="hero-inner">
-          <div className="hero-main">
-            <p className="eyebrow">Yoonhyuck Woo · 윤혁 우</p>
-            <h1>Human-Centered<br /><span>NLP & Knowledge</span></h1>
-            <p className="hero-desc">
-              Ph.D. student in Computer and Information Technology at Purdue University,
-              studying Knowledge Graphs, Large Language Models, and Retrieval-Augmented Generation.
-            </p>
-
-            <div className="hero-actions">
-              <a className="btn primary" href="#publications">View Publications</a>
-              <a className="btn ghost" href="#contact">Contact</a>
-            </div>
-
-            <div className="quick-links">
-              <a href="mailto:woo78@purdue.edu"><Mail size={17}/> Email</a>
-              <a href="https://github.com/yhwoo13"><Github size={17}/> GitHub</a>
-              <a href="https://linkedin.com/in/yoonhyuckWoo"><Linkedin size={17}/> LinkedIn</a>
-              <a href="/cv.pdf"><FileText size={17}/> CV</a>
-            </div>
-          </div>
-
-          <aside className="profile-card">
-            <h2>Yoonhyuck Woo</h2>
-            <p>Ph.D. Student, Computer and Information Technology</p>
-            <p>Purdue University</p>
-            <p className="muted">Advised by Dr. Julia T. Rayz</p>
-            <div className="profile-line"><Mail size={15}/> woo78@purdue.edu</div>
-            <div className="profile-line"><MapPin size={15}/> West Lafayette, IN</div>
-          </aside>
-        </div>
-      </section>
-
-      <section id="about" className="section two-col">
-        <div>
-          <p className="eyebrow">About</p>
-          <h2>Researcher building<br /><span>grounded AI systems</span></h2>
-        </div>
-        <div className="body-text">
-          <p>
-            I am a Ph.D. student in Computer and Information Technology at Purdue University,
-            advised by Dr. Julia T. Rayz. My research explores how structured knowledge,
-            language models, and retrieval-augmented systems can support more reliable and
-            human-centered AI.
-          </p>
-          <p>
-            I am particularly interested in knowledge-grounded reasoning, semantic coherence,
-            knowledge graph reliability, and AI systems that adapt to different users’ knowledge
-            backgrounds. Outside research, I am a Manchester United supporter and Korea national
-            team fan.
-          </p>
-        </div>
-      </section>
-
-      <section id="research" className="section research-grid">
-        <div>
-          <p className="eyebrow">Interests</p>
-          <h2>Research<br /><span>Interests</span></h2>
-          <div className="interest-grid">
-            {interests.map(item => <div className="interest" key={item}>{item}</div>)}
-          </div>
-        </div>
-
-        <div>
-          <p className="eyebrow">Trajectory</p>
-          <h2>Academic<br /><span>Path</span></h2>
-          <div className="timeline">
-            {trajectory.map(([school, role, date]) => (
-              <div className="timeline-item" key={role}>
-                <GraduationCap size={18}/>
-                <div>
-                  <b>{school}</b>
-                  <p>{role}</p>
-                  <small>{date}</small>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <p className="eyebrow">Updates</p>
-        <h2>Recent <span>News</span></h2>
-        <div className="news-list">
-          {news.map(([year, type, text]) => (
-            <article className="news-item" key={text}>
-              <span>{year}</span>
-              <b>{type}</b>
-              <p>{text}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section id="publications" className="section">
-        <p className="eyebrow">Research Output</p>
-        <h2>Selected <span>Publications</span></h2>
-
-        <div className="pub-list">
-          {publications.map(pub => (
-            <article className="publication" key={pub.title}>
-              <div className="pub-note">{pub.note}</div>
-              <h3>{pub.title}</h3>
-              <p>{pub.authors}</p>
-              <em>{pub.venue}</em>
-              <div className="pub-links">
-                {pub.links.map(link => (
-                  <a href="#" key={link}>{link} <ExternalLink size={13}/></a>
-                ))}
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section id="projects" className="section">
-        <p className="eyebrow">Selected Work</p>
-        <h2>Projects & <span>Systems</span></h2>
-
-        <div className="project-grid">
-          {projects.map(project => (
-            <article className="project-card" key={project.title}>
-              <small>{project.period}</small>
-              <h3>{project.title}</h3>
-              <p>{project.desc}</p>
-              <div className="tags">
-                {project.tags.map(tag => <span key={tag}>{tag}</span>)}
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="section">
-        <p className="eyebrow">Toolkit</p>
-        <h2>Technical <span>Skills</span></h2>
-        <div className="skill-list">
-          {skills.map(skill => <span key={skill}>{skill}</span>)}
-        </div>
-      </section>
-
-      <section id="contact" className="section contact">
-        <div>
-          <p className="eyebrow">Contact</p>
-          <h2>Let's <span>Connect</span></h2>
-          <p>
-            I am always happy to discuss research collaborations, knowledge graphs,
-            LLM systems, or human-centered NLP.
-          </p>
-        </div>
-
-        <div className="contact-box">
-          <a href="mailto:woo78@purdue.edu"><Mail size={18}/> woo78@purdue.edu</a>
-          <a href="https://github.com/yhwoo13"><Github size={18}/> github.com/yhwoo13</a>
-          <a href="https://linkedin.com/in/yoonhyuckWoo"><Linkedin size={18}/> linkedin.com/in/yoonhyuckWoo</a>
-          <a href="/cv.pdf"><FileText size={18}/> Curriculum Vitae</a>
-        </div>
-      </section>
-
-      <footer>
-        <p>Designed and built by Yoonhyuck Woo.</p>
-      </footer>
-    </main>
-  )
-}
-
-createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yoonhyuck Woo</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    :root{--bg:#fbfaf7;--panel:#fff;--text:#151515;--muted:#666a73;--line:#ddd8ce;--accent:#8b1e16;--accent2:#c53124;--chip:#f4eee8;--max:1120px}
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.55}
+    a{color:inherit;text-decoration:none} p{color:var(--muted);margin:0 0 1rem} h1,h2,h3{margin:0;color:var(--text)}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+    .nav{position:sticky;top:0;z-index:20;background:rgba(251,250,247,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .nav-inner{max-width:var(--max);margin:0 auto;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;gap:24px}
+    .brand{font-weight:800;letter-spacing:-.03em;font-size:1.15rem}.brand span{color:var(--accent2)}
+    .nav-links{display:flex;gap:18px;font-size:.9rem;color:#555;font-weight:600}.nav-links a:hover{color:var(--accent2)}
+    .hero{padding:70px 0 42px;border-bottom:1px solid var(--line)}
+    .hero-grid{display:grid;grid-template-columns:1.3fr .75fr;gap:46px;align-items:start}
+    .kicker{display:inline-flex;color:var(--accent2);text-transform:uppercase;letter-spacing:.12em;font-size:.75rem;font-weight:800;margin-bottom:18px}
+    .hero h1{font-size:clamp(2.7rem,7vw,5.2rem);line-height:.94;letter-spacing:-.07em;max-width:760px}.hero h1 span{color:var(--accent2)}
+    .subtitle{margin-top:24px;font-size:1.12rem;max-width:690px;color:#555b66}
+    .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+    .meta a,.meta span{display:inline-flex;border:1px solid var(--line);background:var(--panel);padding:9px 12px;border-radius:999px;font-size:.9rem;color:#424751;font-weight:600}
+    .meta a:hover{border-color:var(--accent2);color:var(--accent2)}
+    .profile{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:0 20px 50px rgba(60,40,20,.08)}
+    .avatar{width:86px;height:86px;border-radius:50%;background:linear-gradient(135deg,rgba(139,30,22,.3),rgba(197,49,36,.08)),url('https://avatars.githubusercontent.com/yhwoo13');background-size:cover;background-position:center;border:1px solid var(--line);margin-bottom:16px}
+    .profile h2{font-size:1.35rem;letter-spacing:-.04em}.profile .role{font-weight:700;color:#333;margin:.4rem 0}.profile small{color:var(--muted)}
+    .profile hr{border:0;border-top:1px solid var(--line);margin:18px 0}.info-row{display:flex;justify-content:space-between;gap:14px;font-size:.88rem;padding:7px 0}.info-row b{color:#333}.info-row span{color:var(--muted);text-align:right}
+    .section{padding:58px 0;border-bottom:1px solid var(--line)}
+    .section-head{display:grid;grid-template-columns:.32fr 1fr;gap:36px;margin-bottom:28px}
+    .label{color:var(--accent2);font-size:.75rem;text-transform:uppercase;letter-spacing:.14em;font-weight:800}
+    .section h2{font-size:clamp(2rem,4vw,3.5rem);line-height:1;letter-spacing:-.06em}.section h2 span{color:var(--accent2)}
+    .about-text{display:grid;grid-template-columns:1fr 1fr;gap:26px;font-size:1rem}
+    .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.tile{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;min-height:96px}.tile b{display:block;font-size:1rem;margin-bottom:6px}.tile span{font-size:.85rem;color:var(--muted)}
+    .side-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.news-list,.trajectory{display:grid;gap:12px}
+    .news-item,.traj-item,.pub,.project{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px 20px}
+    .news-item{display:grid;grid-template-columns:70px 88px 1fr;gap:14px;align-items:start}.year{color:var(--accent2);font-weight:800;font-size:.9rem}
+    .type{display:inline-flex;width:max-content;background:var(--chip);color:var(--accent);padding:4px 8px;border-radius:999px;font-size:.72rem;font-weight:800;letter-spacing:.06em}.news-item p{margin:0;color:#4f5560}
+    .traj-item b{display:block;margin-bottom:4px}.traj-item p{margin:0;color:#4f5560}.traj-item small{color:var(--muted)}
+    .pub-list{display:grid;gap:16px}.pub{padding:24px}.pub-note{color:var(--accent2);font-weight:800;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}.pub h3{font-size:1.25rem;letter-spacing:-.03em;margin-bottom:8px}.authors{color:#414650;font-weight:600;margin-bottom:4px}.venue{color:var(--muted);font-style:italic}
+    .links{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.links a{color:var(--accent);background:var(--chip);border:1px solid #ead8cd;padding:6px 10px;border-radius:999px;font-size:.8rem;font-weight:800}
+    .project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.project small{color:var(--accent2);font-weight:800}.project h3{font-size:1.15rem;letter-spacing:-.03em;margin:10px 0}
+    .tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}.tags span{font-size:.75rem;color:var(--accent);background:var(--chip);padding:5px 8px;border-radius:999px;font-weight:700}
+    .skill-list{display:flex;flex-wrap:wrap;gap:10px}.skill-list span{background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:10px 14px;font-weight:700;color:#3f4650}
+    .contact-box{background:linear-gradient(135deg,#fff,#f6f0e9);border:1px solid var(--line);border-radius:22px;padding:28px;display:grid;grid-template-columns:1fr 1fr;gap:12px}.contact-box a{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;color:#3f4650;font-weight:700}.contact-box a:hover{border-color:var(--accent2);color:var(--accent2)}
+    footer{padding:26px 0;color:var(--muted);font-size:.9rem}
+    @media(max-width:860px){.nav-links{display:none}.hero-grid,.section-head,.about-text,.side-grid,.project-grid,.contact-box{grid-template-columns:1fr}.tiles{grid-template-columns:1fr 1fr}.news-item{grid-template-columns:1fr;gap:6px}.hero{padding-top:44px}}
+  </style>
+</head>
+<body>
+  <nav class="nav"><div class="nav-inner"><a class="brand" href="#home">Yoonhyuck <span>Woo</span></a><div class="nav-links"><a href="#about">About</a><a href="#research">Research</a><a href="#news">News</a><a href="#publications">Publications</a><a href="#projects">Projects</a><a href="#contact">Contact</a></div></div></nav>
+  <header id="home" class="hero"><div class="wrap hero-grid"><div><div class="kicker">Ph.D. Student · NLP · Knowledge Graphs</div><h1>Human-centered<br><span>NLP & Knowledge</span></h1><p class="subtitle">I study Knowledge Graphs, Large Language Models, and Retrieval-Augmented Generation to build more reliable, grounded, and human-centered AI systems.</p><div class="meta"><span>Purdue University</span><span>Computer and Information Technology</span><a href="mailto:woo78@purdue.edu">Email</a><a href="https://github.com/yhwoo13">GitHub</a><a href="https://linkedin.com/in/yoonhyuckWoo">LinkedIn</a><a href="cv.pdf">CV</a></div></div><aside class="profile"><div class="avatar"></div><h2>Yoonhyuck Woo</h2><p class="role">Ph.D. Student, Computer and Information Technology</p><small>Purdue University · Advised by Dr. Julia T. Rayz</small><hr><div class="info-row"><b>Email</b><span>woo78@purdue.edu</span></div><div class="info-row"><b>Research</b><span>KGs · LLMs · RAG</span></div><div class="info-row"><b>Location</b><span>West Lafayette, IN</span></div><div class="info-row"><b>Also</b><span>Manchester United supporter</span></div></aside></div></header>
+  <section id="about" class="section"><div class="wrap"><div class="section-head"><div class="label">About</div><h2>Building grounded AI systems<br><span>for human understanding</span></h2></div><div class="about-text"><p>I am a Ph.D. student in Computer and Information Technology at Purdue University, advised by Dr. Julia T. Rayz. My research sits at the intersection of Knowledge Graphs, Large Language Models, and Retrieval-Augmented Generation.</p><p>I am interested in how structured knowledge can help AI systems reason more reliably, maintain semantic coherence, and adapt to users with different knowledge backgrounds. Outside research, I am a Manchester United supporter and Korea national team fan.</p></div></div></section>
+  <section id="research" class="section"><div class="wrap"><div class="section-head"><div class="label">Research</div><h2>Interests & <span>Trajectory</span></h2></div><div class="side-grid"><div><div class="tiles"><div class="tile"><b>Knowledge Graphs</b><span>Construction, alignment, reliability</span></div><div class="tile"><b>LLMs</b><span>Reasoning, prompting, evaluation</span></div><div class="tile"><b>RAG</b><span>Grounded generation and retrieval</span></div><div class="tile"><b>Human-AI</b><span>Adaptive and useful AI systems</span></div></div></div><div class="trajectory"><article class="traj-item"><b>Purdue University</b><p>Ph.D. Student, Computer and Information Technology</p><small>2025 – Present</small></article><article class="traj-item"><b>Purdue University</b><p>M.S., Computer and Information Technology</p><small>2023 – 2025</small></article><article class="traj-item"><b>Jeonbuk National University</b><p>B.S., Industrial Engineering</p><small>2017 – 2023</small></article></div></div></div></section>
+  <section id="news" class="section"><div class="wrap"><div class="section-head"><div class="label">Updates</div><h2>Recent <span>News</span></h2></div><div class="news-list"><article class="news-item"><span class="year">2026</span><span class="type">PAPER</span><p>Paper accepted at FLAIRS 2026 on probing knowledge graph reliability and semantic coherence with language models.</p></article><article class="news-item"><span class="year">2026</span><span class="type">RESEARCH</span><p>Started graduate research assistantship on AI-enabled library services at Purdue University Libraries.</p></article><article class="news-item"><span class="year">2025</span><span class="type">PROJECT</span><p>Developed an LLM and RAG-based system for thermostat response analysis in residential settings.</p></article><article class="news-item"><span class="year">2024</span><span class="type">PAPER</span><p>Published work on performance metrics and augmentation methods in lung nodule classification in Applied Sciences.</p></article></div></div></section>
+  <section id="publications" class="section"><div class="wrap"><div class="section-head"><div class="label">Research Output</div><h2>Selected <span>Publications</span></h2></div><div class="pub-list"><article class="pub"><div class="pub-note">Accepted · 2026</div><h3>Probing Knowledge Graph Reliability and Semantic Coherence with Language Models</h3><p class="authors">Yoonhyuck Woo, Julia T. Rayz</p><p class="venue">FLAIRS 2026 — 39th International Florida AI Research Society Conference</p><div class="links"><a href="#">PDF</a><a href="#">Code</a><a href="#">Project</a></div></article><article class="pub"><div class="pub-note">Published · 2024</div><h3>Research on Performance Metrics and Augmentation Methods in Lung Nodule Classification</h3><p class="authors">D. Luo, I. Yang, J. Bae, Y. Woo</p><p class="venue">Applied Sciences, vol. 14, no. 13, p. 5726</p><div class="links"><a href="#">PDF</a></div></article><article class="pub"><div class="pub-note">Presented · 2022</div><h3>Improve Pulmonary Nodule Classification Performance Utilizing Proper Metrics and Augmentation Methods</h3><p class="authors">D. Luo, J. Bae, Y. Woo, J. Baek</p><p class="venue">Korean Institute of Industrial Engineers Autumn Conference, Incheon, Korea</p></article></div></div></section>
+  <section id="projects" class="section"><div class="wrap"><div class="section-head"><div class="label">Selected Work</div><h2>Projects & <span>Systems</span></h2></div><div class="project-grid"><article class="project"><small>Feb. 2026 – Apr. 2026</small><h3>Conference Knowledge Synthesis Assistant</h3><p>A knowledge graph system for synthesizing insights across research papers and user notes using LLM-based candidate generation and code-driven validation.</p><div class="tags"><span>Knowledge Graphs</span><span>LLMs</span><span>Django</span><span>D3.js</span></div></article><article class="project"><small>Feb. 2025 – Aug. 2025</small><h3>LLM System for Thermostat Response Analysis</h3><p>A two-module LLM system for detecting reasoning in resident responses, generating follow-up prompts, and answering questions with RAG.</p><div class="tags"><span>LLMs</span><span>RAG</span><span>Clustering</span></div></article><article class="project"><small>Mar. 2024 – Apr. 2024</small><h3>Dynamic Context-Aware Chatbot using ConceptFlow</h3><p>A context-aware chatbot integrating ConceptFlow, graph attention, and concept-based strategies for improved interaction management.</p><div class="tags"><span>ConceptFlow</span><span>Graph Attention</span><span>Python</span></div></article></div></div></section>
+  <section class="section"><div class="wrap"><div class="section-head"><div class="label">Toolkit</div><h2>Technical <span>Skills</span></h2></div><div class="skill-list"><span>Python</span><span>PyTorch</span><span>TensorFlow</span><span>HuggingFace Transformers</span><span>scikit-learn</span><span>RAG</span><span>LangChain</span><span>pandas</span><span>NumPy</span><span>C</span><span>R</span><span>Jupyter Notebook</span></div></div></section>
+  <section id="contact" class="section"><div class="wrap"><div class="section-head"><div class="label">Contact</div><h2>Let's <span>Connect</span></h2></div><div class="contact-box"><a href="mailto:woo78@purdue.edu">Email · woo78@purdue.edu</a><a href="https://github.com/yhwoo13">GitHub · github.com/yhwoo13</a><a href="https://linkedin.com/in/yoonhyuckWoo">LinkedIn · yoonhyuckWoo</a><a href="cv.pdf">CV · Download</a></div></div></section>
+  <footer><div class="wrap">Designed and built by Yoonhyuck Woo.</div></footer>
+</body>
+</html>

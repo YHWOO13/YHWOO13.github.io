@@ -1,200 +1,272 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yoonhyuck Woo | Portfolio</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700;800&display=swap');
+import React from 'react'
+import { createRoot } from 'react-dom/client'
+import {
+  Mail,
+  Linkedin,
+  Github,
+  FileText,
+  GraduationCap,
+  ExternalLink,
+  MapPin
+} from 'lucide-react'
+import './style.css'
 
-    :root {
-      --bg:#09090b; --panel:#141418; --line:#2a2a31;
-      --text:#f4f1ed; --muted:#9ca3af; --red:#e7291f;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif}
-    a{text-decoration:none;color:inherit}
-    p{color:var(--muted);line-height:1.7}
-    h1,h2,h3,h4,.logo,.btn,.eyebrow{font-family:Anton,Impact,sans-serif;text-transform:uppercase;font-weight:400;letter-spacing:.04em}
-    h2{font-size:clamp(3rem,6vw,5rem);line-height:.95;margin:0 0 2rem}
-    h2 span,h1 strong{color:var(--red)}
+const interests = [
+  'Knowledge Graphs',
+  'Large Language Models',
+  'Human-Centered NLP',
+  'Retrieval-Augmented Generation',
+  'Knowledge-Grounded Reasoning',
+  'Human-AI Interaction'
+]
 
-    .nav{position:fixed;top:0;z-index:10;width:100%;height:76px;padding:0 13vw;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(#050505dd,transparent)}
-    .logo{font-size:1.5rem;color:var(--red)}
-    .nav div{display:flex;gap:2rem;color:#8f949f;font-weight:700}
-    .nav a:hover{color:white}
+const news = [
+  ['2026', 'PAPER', 'Paper accepted at FLAIRS 2026 on probing knowledge graph reliability and semantic coherence with language models.'],
+  ['2026', 'RESEARCH', 'Started graduate research assistantship on AI-enabled library services at Purdue University Libraries.'],
+  ['2025', 'PROJECT', 'Developed an LLM and RAG-based system for thermostat response analysis in residential settings.'],
+  ['2024', 'PAPER', 'Published work on performance metrics and augmentation methods in lung nodule classification in Applied Sciences.']
+]
 
-    .hero{min-height:100vh;display:grid;place-items:center;position:relative;overflow:hidden}
-    .hero:before{content:"";position:absolute;inset:0;background:
-      linear-gradient(90deg,#050505 0%,#050505aa 42%,#050505 100%),
-      linear-gradient(#050505aa,#050505ee),
-      url('https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=2200&q=80');
-      background-size:cover;background-position:center;filter:brightness(.75)}
-    .hero:after{content:"UNITED";position:absolute;font-family:Anton,Impact,sans-serif;font-size:31vw;color:#e7291f12;transform:rotate(-8deg)}
-    .hero-content{position:relative;z-index:2;width:min(680px,90vw)}
-    .eyebrow{color:var(--red);font-size:.9rem;letter-spacing:.35em}
-    h1{font-size:clamp(5rem,10vw,9rem);line-height:.82;margin:2rem 0}
-    h1 span{display:block}
-    h1 strong{display:block}
-    .subtitle{font-size:1.18rem;max-width:640px}
-    .small{font-size:.9rem;color:#777}
-    .buttons{display:flex;gap:1rem;margin-top:2.5rem}
-    .btn{display:inline-flex;justify-content:center;min-width:170px;padding:1rem 2rem;border:1px solid #ffffff33}
-    .primary{background:var(--red);border-color:var(--red)}
-    .ghost:hover{border-color:var(--red);color:var(--red)}
+const publications = [
+  {
+    title: 'Probing Knowledge Graph Reliability and Semantic Coherence with Language Models',
+    authors: 'Yoonhyuck Woo, Julia T. Rayz',
+    venue: 'FLAIRS 2026 — 39th International Florida AI Research Society Conference',
+    note: 'Accepted',
+    links: ['PDF', 'Code']
+  },
+  {
+    title: 'Research on Performance Metrics and Augmentation Methods in Lung Nodule Classification',
+    authors: 'D. Luo, I. Yang, J. Bae, Y. Woo',
+    venue: 'Applied Sciences, vol. 14, no. 13, p. 5726',
+    note: 'Published · 2024',
+    links: ['PDF']
+  },
+  {
+    title: 'Improve Pulmonary Nodule Classification Performance Utilizing Proper Metrics and Augmentation Methods',
+    authors: 'D. Luo, J. Bae, Y. Woo, J. Baek',
+    venue: 'Korean Institute of Industrial Engineers Autumn Conference, Incheon, Korea',
+    note: 'Presented · 2022',
+    links: []
+  }
+]
 
-    .section{padding:7rem min(7vw,90px);border-top:1px solid #1f1f25}
-    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
-    .photo{border:1px solid #6e1712;padding:1rem}
-    .photo div{min-height:420px;background:
-      linear-gradient(120deg,#000c,#073642cc),
-      url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80');
-      background-size:cover;background-position:center;display:grid;place-items:center;color:#ffffff66}
-    .edu p{font-size:.95rem}
+const trajectory = [
+  ['Purdue University', 'Ph.D. Student, Computer and Information Technology', '2025 – Present'],
+  ['Purdue University', 'M.S., Computer and Information Technology', '2023 – 2025'],
+  ['Jeonbuk National University', 'B.S., Industrial Engineering', '2017 – 2023']
+]
 
-    .chips,.tags{display:flex;flex-wrap:wrap;gap:.7rem;margin:1.5rem 0 3.5rem}
-    .chips span,.tags span{color:var(--red);border:1px solid #8d211a;background:#2a0d0a66;padding:.45rem .75rem;font-family:Anton,Impact,sans-serif;font-size:.78rem}
-    h3{font-size:1.3rem;margin:4rem 0 1.5rem}
-    .cards{display:grid;gap:1rem}
-    .card{position:relative;background:var(--panel);border:1px solid var(--line);padding:2rem}
-    .card h4{font-size:1.35rem;margin:.8rem 0 .5rem}
-    .card em,.card small{color:#666d78}
-    .badge{display:inline-block;color:var(--red);background:#310b08;padding:.45rem .7rem;font-family:Anton,Impact,sans-serif}
-    .row{display:flex;justify-content:space-between;gap:2rem}
-    .row b{color:var(--red);font-size:.85rem}
-    li{color:#a7adbb;line-height:1.8}
-    li::marker{color:var(--red)}
+const projects = [
+  {
+    title: 'Conference Knowledge Synthesis Assistant',
+    period: 'Feb. 2026 – Apr. 2026',
+    desc: 'A knowledge graph system for synthesizing insights across research papers and user notes using LLM-based candidate generation and code-driven validation.',
+    tags: ['Knowledge Graphs', 'LLMs', 'Django', 'D3.js']
+  },
+  {
+    title: 'LLM System for Thermostat Response Analysis',
+    period: 'Feb. 2025 – Aug. 2025',
+    desc: 'A two-module LLM system for detecting reasoning in resident responses, generating follow-up prompts, and answering questions with RAG.',
+    tags: ['LLMs', 'RAG', 'Clustering']
+  },
+  {
+    title: 'Dynamic Context-Aware Chatbot using ConceptFlow',
+    period: 'Mar. 2024 – Apr. 2024',
+    desc: 'A context-aware chatbot integrating ConceptFlow, graph attention, and concept-based strategies for improved interaction management.',
+    tags: ['ConceptFlow', 'Graph Attention', 'Python']
+  }
+]
 
-    .skill-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem}
-    .skill{background:var(--panel);border:1px solid var(--line);padding:1.3rem}
-    .skill small{color:var(--red);font-family:Anton,Impact,sans-serif;display:block;margin-bottom:.6rem}
-    .skill b{font-size:1.05rem}
-    .feature-grid,.project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:4rem}
-    .feature-grid div{background:var(--panel);border:1px solid var(--line);padding:2rem}
-    .project-grid{grid-template-columns:repeat(2,1fr)}
-    .corner{position:absolute;top:0;right:0;background:var(--red);padding:.75rem 1rem;font-family:Anton,Impact,sans-serif;text-transform:uppercase}
-    .contact-card{display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:center;border:1px solid var(--line);background:var(--panel);margin-top:1rem;padding:1.2rem}
-    .contact-card small{color:#777;display:block}
-    .form{background:var(--panel);border:1px solid var(--line);padding:2rem}
-    label{display:block;margin:1rem 0;color:#777;font-family:Anton,Impact,sans-serif;text-transform:uppercase}
-    input,textarea{width:100%;margin-top:.5rem;background:#202026;border:1px solid #34343b;color:white;padding:1rem;font:inherit}
-    textarea{min-height:140px}
-    button{cursor:pointer;color:white}
+const skills = [
+  'Python', 'PyTorch', 'TensorFlow', 'HuggingFace Transformers',
+  'scikit-learn', 'RAG', 'LangChain', 'pandas', 'NumPy', 'C', 'R'
+]
 
-    @media(max-width:900px){
-      .nav{padding:0 1.5rem}.nav div{display:none}
-      .grid2,.feature-grid,.project-grid{grid-template-columns:1fr}
-      .skill-grid{grid-template-columns:repeat(2,1fr)}
-      .section{padding:5rem 1.25rem}.row{flex-direction:column}
-    }
-  </style>
-</head>
-<body>
-  <nav class="nav">
-    <a href="#home" class="logo">YH.</a>
-    <div>
-      <a href="#about">About</a><a href="#research">Research</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
-    </div>
-  </nav>
+function App() {
+  return (
+    <main>
+      <nav className="nav">
+        <a className="logo" href="#home">YH.</a>
+        <div className="nav-links">
+          <a href="#about">About</a>
+          <a href="#research">Research</a>
+          <a href="#publications">Publications</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
 
-  <section id="home" class="hero">
-    <div class="hero-content">
-      <p class="eyebrow">Ph.D. Researcher · NLP & AI · Purdue University</p>
-      <h1><span>Yoonhyuck</span><strong>Woo</strong></h1>
-      <p class="subtitle">Advancing human-centered NLP through Knowledge Graphs, LLMs, and Retrieval-Augmented Generation.</p>
-      <p class="small">Red Devil at heart. Tiger spirit in the blood.</p>
-      <div class="buttons">
-        <a class="btn primary" href="#research">View Research</a>
-        <a class="btn ghost" href="#contact">Get in Touch</a>
-      </div>
-    </div>
-  </section>
+      <section id="home" className="hero academic-hero">
+        <div className="hero-inner">
+          <div className="hero-main">
+            <p className="eyebrow">Yoonhyuck Woo · 윤혁 우</p>
+            <h1>Human-Centered<br /><span>NLP & Knowledge</span></h1>
+            <p className="hero-desc">
+              Ph.D. student in Computer and Information Technology at Purdue University,
+              studying Knowledge Graphs, Large Language Models, and Retrieval-Augmented Generation.
+            </p>
 
-  <section id="about" class="section grid2">
-    <div class="photo"><div>Replace with your image</div></div>
-    <div>
-      <p class="eyebrow">About Me</p>
-      <h2>NLP Researcher,<br><span>Football Fan</span></h2>
-      <p>I'm a Ph.D. student in Computer and Information Technology at Purdue University, advised by Dr. Julia T. Rayz. My research sits at the intersection of Knowledge Graphs, Large Language Models, and Retrieval-Augmented Generation.</p>
-      <p>I aim to build human-centered NLP applications — intelligent systems that reason over structured knowledge with deep semantic understanding, making AI genuinely useful for people.</p>
-      <p>Originally from Korea, I completed my B.S. in Industrial Engineering at Jeonbuk National University with highest academic standing.</p>
-      <div class="edu">
-        <p>🎓 <b>Ph.D. in CIT</b> — Purdue University (2025 – Present)</p>
-        <p>🎓 <b>M.S. in CIT</b> — Purdue University (2023 – 2025)</p>
-        <p>🎓 <b>B.S. in Industrial Engineering</b> — Jeonbuk National University (2017 – 2023)</p>
-      </div>
-    </div>
-  </section>
+            <div className="hero-actions">
+              <a className="btn primary" href="#publications">View Publications</a>
+              <a className="btn ghost" href="#contact">Contact</a>
+            </div>
 
-  <section id="research" class="section">
-    <p class="eyebrow">Research</p>
-    <h2>Publications & <span>Experience</span></h2>
-    <div class="chips">
-      <span>Natural Language Understanding</span><span>Knowledge Graphs</span><span>LLMs</span><span>RAG</span><span>Human-AI Interaction</span>
-    </div>
+            <div className="quick-links">
+              <a href="mailto:woo78@purdue.edu"><Mail size={17}/> Email</a>
+              <a href="https://github.com/yhwoo13"><Github size={17}/> GitHub</a>
+              <a href="https://linkedin.com/in/yoonhyuckWoo"><Linkedin size={17}/> LinkedIn</a>
+              <a href="/cv.pdf"><FileText size={17}/> CV</a>
+            </div>
+          </div>
 
-    <h3>Publications</h3>
-    <div class="cards">
-      <article class="card"><span class="badge">Accepted · 2026</span><h4>"Probing Knowledge Graph Reliability and Semantic Coherence with Language Models"</h4><p>Y. Woo, J. Rayz</p><em>FLAIRS 2026 — 39th International Florida AI Research Society Conference</em></article>
-      <article class="card"><span class="badge">Published · 2024</span><h4>"Research on Performance Metrics and Augmentation Methods in Lung Nodule Classification"</h4><p>D. Luo, I. Yang, J. Bae, Y. Woo</p><em>Applied Sciences, vol. 14, no. 13, p. 5726</em></article>
-      <article class="card"><span class="badge">Presented · 2022</span><h4>"Improve Pulmonary Nodule Classification Performance Utilizing Proper Metrics and Augmentation Methods"</h4><p>D. Luo, J. Bae, Y. Woo, J. Baek</p><em>Korean Institute of Industrial Engineers Autumn Conference</em></article>
-    </div>
+          <aside className="profile-card">
+            <h2>Yoonhyuck Woo</h2>
+            <p>Ph.D. Student, Computer and Information Technology</p>
+            <p>Purdue University</p>
+            <p className="muted">Advised by Dr. Julia T. Rayz</p>
+            <div className="profile-line"><Mail size={15}/> woo78@purdue.edu</div>
+            <div className="profile-line"><MapPin size={15}/> West Lafayette, IN</div>
+          </aside>
+        </div>
+      </section>
 
-    <h3>Research Experience</h3>
-    <div class="cards">
-      <article class="card">
-        <div class="row"><div><h4>Graduate Research Assistant</h4><p>IMLS-Funded Project, Purdue University Libraries</p><small>Advisor: Dr. Gang Shao</small></div><b>Jan. 2026 – Present</b></div>
-        <ul><li>Developed a dual-path learning framework combining code-based and no-code AI tools.</li><li>Designed and delivered an NLP workshop through Purdue's Graduate & Postdoctoral Professional Development program.</li></ul>
-      </article>
-      <article class="card">
-        <div class="row"><div><h4>Graduate Research Assistant</h4><p>Applied KR & NLU Lab, Purdue University</p><small>Advisor: Dr. Julia T. Rayz</small></div><b>Feb. 2025 – Aug. 2025</b></div>
-        <ul><li>Developed a two-module LLM system to detect reasoning in resident responses and generate follow-up prompts.</li><li>Implemented a RAG pipeline using domain-specific documents.</li><li>Performed clustering analysis to evaluate category alignment and semantic consistency.</li></ul>
-      </article>
-    </div>
-  </section>
+      <section id="about" className="section two-col">
+        <div>
+          <p className="eyebrow">About</p>
+          <h2>Researcher building<br /><span>grounded AI systems</span></h2>
+        </div>
+        <div className="body-text">
+          <p>
+            I am a Ph.D. student in Computer and Information Technology at Purdue University,
+            advised by Dr. Julia T. Rayz. My research explores how structured knowledge,
+            language models, and retrieval-augmented systems can support more reliable and
+            human-centered AI.
+          </p>
+          <p>
+            I am particularly interested in knowledge-grounded reasoning, semantic coherence,
+            knowledge graph reliability, and AI systems that adapt to different users’ knowledge
+            backgrounds. Outside research, I am a Manchester United supporter and Korea national
+            team fan.
+          </p>
+        </div>
+      </section>
 
-  <section id="skills" class="section">
-    <p class="eyebrow">Skills</p>
-    <h2>Technical <span>Toolkit</span></h2>
-    <div class="skill-grid">
-      <div class="skill"><small>Language</small><b>Python</b></div><div class="skill"><small>Language</small><b>C</b></div><div class="skill"><small>Language</small><b>R</b></div><div class="skill"><small>ML / DL</small><b>PyTorch</b></div>
-      <div class="skill"><small>ML / DL</small><b>TensorFlow</b></div><div class="skill"><small>ML / DL</small><b>scikit-learn</b></div><div class="skill"><small>ML / DL</small><b>HuggingFace Transformers</b></div><div class="skill"><small>Data</small><b>NumPy</b></div>
-      <div class="skill"><small>Data</small><b>pandas</b></div><div class="skill"><small>LLM & AI</small><b>RAG</b></div><div class="skill"><small>LLM & AI</small><b>LangChain</b></div><div class="skill"><small>Platform</small><b>Jupyter Notebook</b></div>
-    </div>
-    <div class="feature-grid">
-      <div><h4>NLP & LLMs</h4><p>Building and fine-tuning language models for reasoning, QA, and semantic understanding tasks.</p></div>
-      <div><h4>Knowledge Graphs</h4><p>Constructing, probing, and reasoning over structured knowledge representations for grounded AI.</p></div>
-      <div><h4>RAG Systems</h4><p>Designing retrieval-augmented pipelines that combine document retrieval with LLM generation.</p></div>
-    </div>
-  </section>
+      <section id="research" className="section research-grid">
+        <div>
+          <p className="eyebrow">Interests</p>
+          <h2>Research<br /><span>Interests</span></h2>
+          <div className="interest-grid">
+            {interests.map(item => <div className="interest" key={item}>{item}</div>)}
+          </div>
+        </div>
 
-  <section id="projects" class="section">
-    <p class="eyebrow">Projects</p>
-    <h2>Selected <span>Work</span></h2>
-    <div class="project-grid">
-      <article class="card"><span class="corner">Featured</span><h4>Conference Knowledge Synthesis Assistant</h4><small>Feb. 2026 – Apr. 2026</small><p>Engineered a knowledge graph system to synthesize insights across research papers and user notes.</p><div class="tags"><span>Knowledge Graphs</span><span>LLMs</span><span>Django</span><span>D3.js</span></div></article>
-      <article class="card"><h4>Dynamic Context-Aware Chatbot using ConceptFlow</h4><small>Mar. 2024 – Apr. 2024</small><p>Enhanced a chatbot by integrating ConceptFlow with graph attention mechanisms and concept-based strategies.</p><div class="tags"><span>ConceptFlow</span><span>Graph Attention</span><span>Python</span></div></article>
-      <article class="card"><h4>LLM System for Thermostat Response Analysis</h4><small>Feb. 2025 – Aug. 2025</small><p>Developed a two-module LLM system to detect reasoning in resident responses and generate follow-up prompts.</p><div class="tags"><span>LLMs</span><span>RAG</span><span>Clustering</span><span>Python</span></div></article>
-      <article class="card"><h4>Awards & Scholarships</h4><ul><li><b>Study Abroad Scholarship ($9,167)</b><br><span>Jeonbuk National University · Jul. 2023</span></li><li><b>President's Award for Academic Excellence</b><br><span>Feb. 2023</span></li><li><b>ABEEK National Portfolio Competition</b><br><span>Bronze Prize · Oct. 2021</span></li></ul></article>
-    </div>
-  </section>
+        <div>
+          <p className="eyebrow">Trajectory</p>
+          <h2>Academic<br /><span>Path</span></h2>
+          <div className="timeline">
+            {trajectory.map(([school, role, date]) => (
+              <div className="timeline-item" key={role}>
+                <GraduationCap size={18}/>
+                <div>
+                  <b>{school}</b>
+                  <p>{role}</p>
+                  <small>{date}</small>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-  <section id="contact" class="section grid2">
-    <div>
-      <p class="eyebrow">Contact</p>
-      <h2>Let's <span>Connect</span></h2>
-      <p>Interested in collaboration, research discussions, or just want to debate the best XI in Premier League history? My inbox is always open.</p>
-      <a class="contact-card" href="mailto:woo78@purdue.edu"><span>✉️</span><div><small>Email</small><b>woo78@purdue.edu</b></div><span>↗</span></a>
-      <a class="contact-card" href="https://linkedin.com/in/yoonhyuckWoo"><span>in</span><div><small>LinkedIn</small><b>linkedin.com/in/yoonhyuckWoo</b></div><span>↗</span></a>
-    </div>
-    <form class="form" action="mailto:woo78@purdue.edu" method="post">
-      <h3>Send a Message</h3>
-      <label>Name<input placeholder="Your name"></label>
-      <label>Email<input placeholder="your@email.com"></label>
-      <label>Message<textarea placeholder="Your message..."></textarea></label>
-      <button class="btn primary" type="submit">Send Message</button>
-    </form>
-  </section>
-</body>
-</html>
+      <section className="section">
+        <p className="eyebrow">Updates</p>
+        <h2>Recent <span>News</span></h2>
+        <div className="news-list">
+          {news.map(([year, type, text]) => (
+            <article className="news-item" key={text}>
+              <span>{year}</span>
+              <b>{type}</b>
+              <p>{text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="publications" className="section">
+        <p className="eyebrow">Research Output</p>
+        <h2>Selected <span>Publications</span></h2>
+
+        <div className="pub-list">
+          {publications.map(pub => (
+            <article className="publication" key={pub.title}>
+              <div className="pub-note">{pub.note}</div>
+              <h3>{pub.title}</h3>
+              <p>{pub.authors}</p>
+              <em>{pub.venue}</em>
+              <div className="pub-links">
+                {pub.links.map(link => (
+                  <a href="#" key={link}>{link} <ExternalLink size={13}/></a>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="projects" className="section">
+        <p className="eyebrow">Selected Work</p>
+        <h2>Projects & <span>Systems</span></h2>
+
+        <div className="project-grid">
+          {projects.map(project => (
+            <article className="project-card" key={project.title}>
+              <small>{project.period}</small>
+              <h3>{project.title}</h3>
+              <p>{project.desc}</p>
+              <div className="tags">
+                {project.tags.map(tag => <span key={tag}>{tag}</span>)}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section">
+        <p className="eyebrow">Toolkit</p>
+        <h2>Technical <span>Skills</span></h2>
+        <div className="skill-list">
+          {skills.map(skill => <span key={skill}>{skill}</span>)}
+        </div>
+      </section>
+
+      <section id="contact" className="section contact">
+        <div>
+          <p className="eyebrow">Contact</p>
+          <h2>Let's <span>Connect</span></h2>
+          <p>
+            I am always happy to discuss research collaborations, knowledge graphs,
+            LLM systems, or human-centered NLP.
+          </p>
+        </div>
+
+        <div className="contact-box">
+          <a href="mailto:woo78@purdue.edu"><Mail size={18}/> woo78@purdue.edu</a>
+          <a href="https://github.com/yhwoo13"><Github size={18}/> github.com/yhwoo13</a>
+          <a href="https://linkedin.com/in/yoonhyuckWoo"><Linkedin size={18}/> linkedin.com/in/yoonhyuckWoo</a>
+          <a href="/cv.pdf"><FileText size={18}/> Curriculum Vitae</a>
+        </div>
+      </section>
+
+      <footer>
+        <p>Designed and built by Yoonhyuck Woo.</p>
+      </footer>
+    </main>
+  )
+}
+
+createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+)

@@ -276,63 +276,190 @@ h3 {
   font-size: 1rem;
 }
 
-/* Research */
+/* Research Panels */
 
-.side-grid {
+.research-panels {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 0.85fr 1.25fr;
   gap: 22px;
 }
 
-.tiles {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-}
-
-.tile {
-  background: var(--panel);
+.research-panel {
+  background: rgba(255, 255, 255, 0.68);
   border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 18px;
-  min-height: 112px;
+  border-radius: 18px;
+  padding: 34px;
 }
 
-.tile b {
-  display: block;
-  font-size: 1rem;
+.panel-title {
+  color: var(--accent2);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-weight: 800;
+  padding-bottom: 16px;
+  margin-bottom: 26px;
+  border-bottom: 2px dotted #cfc7ba;
+}
+
+/* Interests */
+
+.interest-list {
+  display: grid;
+  gap: 28px;
+}
+
+.interest-row {
+  display: grid;
+  grid-template-columns: 94px 1fr;
+  gap: 24px;
+  align-items: center;
+}
+
+.interest-icon {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: #f8f3ec;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent2);
+  font-size: 1.8rem;
+}
+
+.interest-row h3 {
+  font-size: 1.25rem;
+  letter-spacing: -0.04em;
   margin-bottom: 6px;
 }
 
-.tile span {
-  font-size: 0.85rem;
-  color: var(--muted);
+.interest-row p {
+  font-size: 1rem;
+  margin: 0;
+  color: #59606b;
 }
 
-.trajectory {
+/* Trajectory */
+
+.trajectory-line {
+  position: relative;
   display: grid;
-  gap: 12px;
+  gap: 34px;
 }
 
-.traj-item {
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  padding: 18px 20px;
+.trajectory-line::before {
+  content: "";
+  position: absolute;
+  left: 9px;
+  top: 18px;
+  bottom: 80px;
+  border-left: 2px dotted #d6cdc0;
 }
 
-.traj-item b {
-  display: block;
+.trajectory-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 24px 90px 1fr;
+  gap: 22px;
+  align-items: center;
+}
+
+.timeline-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent2);
+  position: relative;
+  z-index: 2;
+}
+
+.school-logo {
+  width: 72px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+}
+
+.purdue-logo {
+  font-size: 2.3rem;
+  font-family: Georgia, serif;
+  color: #c8b18b;
+  -webkit-text-stroke: 2px #111;
+  transform: skewX(-10deg);
+}
+
+.jbnu-logo {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #234f8f;
+  color: white;
+  font-size: 0.9rem;
+  border: 3px solid #d7e1f2;
+}
+
+.trajectory-row h3 {
+  font-size: 1.35rem;
+  letter-spacing: -0.04em;
   margin-bottom: 4px;
 }
 
-.traj-item p {
-  margin: 0;
-  color: #4f5560;
+.trajectory-row p {
+  margin: 0 0 4px;
+  color: #59606b;
+  font-size: 1rem;
 }
 
-.traj-item small {
-  color: var(--muted);
+.trajectory-row span {
+  color: var(--accent2);
+  font-weight: 700;
+}
+
+/* Responsive Research Panels */
+
+@media (max-width: 860px) {
+  .research-panels {
+    grid-template-columns: 1fr;
+  }
+
+  .research-panel {
+    padding: 24px;
+  }
+
+  .interest-row {
+    grid-template-columns: 70px 1fr;
+    gap: 18px;
+  }
+
+  .interest-icon {
+    width: 58px;
+    height: 58px;
+    font-size: 1.35rem;
+  }
+
+  .trajectory-row {
+    grid-template-columns: 20px 64px 1fr;
+    gap: 14px;
+  }
+
+  .school-logo {
+    width: 56px;
+    height: 42px;
+  }
+
+  .purdue-logo {
+    font-size: 1.8rem;
+  }
+
+  .jbnu-logo {
+    width: 46px;
+    height: 46px;
+    font-size: 0.72rem;
+  }
 }
 
 /* News */
